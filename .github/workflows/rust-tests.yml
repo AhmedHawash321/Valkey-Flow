@@ -1,0 +1,39 @@
+name: Rust Integration Tests
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      valkey:
+        image: valkey/valkey:8.1.2
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "valkey-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Rust
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Build Examples
+      run: cargo build --examples
+
+    - name: Run Integration Tests
+      env:
+        VALKEY_URL: redis://localhost:6379
+        PRIMARY_STREAM: test_stream_logic
+        GROUP_ONE: test_group_logic
+        GROUP_TWO: test_group_logic_02
+      run: cargo test --test valkey_integrations -- --nocapture
