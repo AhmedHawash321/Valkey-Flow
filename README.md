@@ -74,7 +74,6 @@ This library is ideal for building **event-driven systems**, **message queues**,
 │ └──────────┘ └──────────┘ │
 └─────────────────────────────────────┘
 
-text
 
 - **Writer**: Produces messages to the stream
 - **Consumer Groups**: Isolated groups with their own message processing logic
