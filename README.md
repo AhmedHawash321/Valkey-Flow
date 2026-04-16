@@ -90,22 +90,6 @@ This library is ideal for building **event-driven systems**, **message queues**,
 
 ---
 
-
-- **Writer**: Produces messages to the stream
-- **Consumer Groups**: Isolated groups with their own message processing logic
-- **Consumers**: Individual workers within a group (messages are distributed among them)
-- **ACK**: Automatic acknowledgment after successful processing
-
----
-
-## 📦 Prerequisites
-
-- **Rust** 1.70 or later ([install](https://www.rust-lang.org/tools/install))
-- **Redis** 6.0+ or **Valkey** 7.0+ (or use Docker as shown below)
-- **Docker** (optional, for containerized Redis/Valkey)
-
----
-
 ## 🚀 Installation
 
 Add to your `Cargo.toml`:
